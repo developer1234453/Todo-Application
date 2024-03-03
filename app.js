@@ -37,30 +37,43 @@ const hasStatusPrority = (requestquery) => {
 }
 
 app.get("/todos/", async (request, response)=>{
-    let data = null
+    let data = null;
+    let getTodoQuery = '';
     const {search_q = "", priority, status} = request.query;
     switch (true) {
         case hasPriorandStatusProperty(request.query):
+            
         getTodoQuery = `
         SELECT
+        
         *
         FROM
+        
         todo
+        
         WHERE
+        
         todo LIKE '%${search_q}%'
         AND status = '${status}'
         AND priority = '${priority}';`;
-        break
+        break;
+            
         case hasPriorityProperty(request.query):
         getTodoQuery = `
         SELECT
+        
         *
+
+        
         FROM
+        
         todo
         WHERE
+        
         todo LIKE '%${search_q}%'
         AND priority = '${priority}';`;
         break;
+            
         case hasPriorandStatusProperty(request.query):
         getTodoQuery = `
         SELECT 
@@ -72,6 +85,8 @@ app.get("/todos/", async (request, response)=>{
         `;
         break ;
         default:
+
+            
         getTodoQuery = `
         SELECT
         *
@@ -114,17 +129,20 @@ app.put("/todos/:todoId/", async (request, response)=> {
     const {todoId} = request.params;
     let updateColumn = "";
     const requestBody = request.body;
-    switch (true);
-    case requestBody.status !== undefined;
+    switch (true) {
+    case requestBody.status !== undefined:
     updateColumn = "Status";
-    break
-    case requestBody.priority !== undefined
-    updateColumn = "Priority";
-    break
-    case requestBody.todo !== undefined;
+    break;
+            
+    case requestBody.priority !== undefined:
+    updateColumn = "Priority"
+    break;
+            
+    case requestBody.todo !== undefined:
     updateColumn ="Todo";
-    break
-    
+    break;
+            
+    }
     const previousTodoQuery = `
     SELECT
     *
