@@ -1,7 +1,7 @@
-const express = reqire("express");
-const {open} = reqire("sqlite");
-const sqlite3 = reqire("sqlite3");
-const path = reqire("path");
+const express = require("express");
+const {open} = require("sqlite");
+const sqlite3 = require("sqlite3");
+const path = require("path");
 const dbpath= path.join(__dirname,todoApplication.db);
 const app = express()
 
